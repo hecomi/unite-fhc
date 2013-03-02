@@ -18,7 +18,7 @@ endfunction
 
 function! g:fhc.check_err(json)
 	if a:json.result != 'ok'
-		cexpr a:json.code . ': ' . a:json.message
+		echo a:json.code . ': ' . a:json.message
 		return -1
 	endif
 	return 0
