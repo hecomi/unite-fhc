@@ -11,6 +11,14 @@ Dependencies
 Install
 -------------
 ```vim
+" 遅延ロード
+NeoBundleLazy 'hecomi/unite-fhc', {
+\	'depends'  : ['mattn/webapi-vim'],
+\	'autoload' : {
+\		'unite_sources' : 'fhc',
+\	},
+\ }
+
 " FHC の IP
 let g:fhc_ip     = '192.168.0.11'
 " FHC の Web API key
