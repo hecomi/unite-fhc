@@ -3,12 +3,10 @@ scriptencoding utf-8
 let g:fhc = {}
 
 function! g:fhc.get_json(kind, opt)
-	let l:opt = ''
-	for key in keys(a:opt)
-		let l:opt .= '&'.key.'='.a:opt[key]
-	endfor
-	let l:fhc_url = 'http://'.g:fhc_ip.'/api/'.a:kind.'?webapi_apikey='.g:fhc_apikey.l:opt
-	let l:res     = webapi#http#get(l:fhc_url)
+	let l:opt = copy(a:opt)
+	let l:opt['webapi_apikey'] = g:fhc_apikey
+	let l:fhc_url = 'http://'.g:fhc_ip.'/api/'.a:kind
+	let l:res = webapi#http#get(l:fhc_url, l:opt)
 	if l:res.content == ''
 		return {'result': 'error', 'code': 'xxx', 'message': 'network error'}
 	endif
